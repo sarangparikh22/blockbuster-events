@@ -190,7 +190,7 @@ contract MoviesBlockbusterEvents is Pausable{
     /// @param _movieID Movie ID by the Particular Hall
     function reqRefund(address _hall, uint _movieID) public whenNotPaused {
         Movie storage m = hallMovieCollectionMapping[_hall][_movieID];
-        require(m.time - 5 minutes > now);
+        require(m.time.sub(5 minutes) > now);
         require(m.cancellation == true);
         uint tickets = m.viewers[msg.sender];
         require(tickets > 0);
