@@ -1,0 +1,45 @@
+{
+  "name": "truffle-react",
+  "version": "1.0.0",
+  "description": "A boilerplate Truffle Box project with Create React App for rapid Ethereum Dapp development",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrianmcli/truffle-react.git"
+  },
+  "keywords": [],
+  "author": "Adrian Li",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adrianmcli/truffle-react/issues"
+  },
+  "homepage": "https://github.com/adrianmcli/truffle-react#readme",
+  "dependencies": {
+    "@material-ui/core": "^4.9.0",
+    "@material-ui/icons": "^4.5.1",
+    "@progress/kendo-react-dateinputs": "^3.10.1",
+    "@truffle/hdwallet-provider": "^1.0.30",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.4.1",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "firebase": "^7.7.0",
+    "ipfs-api": "^26.1.2",
+    "node-sass": "^4.13.1",
+    "openzeppelin-solidity": "^2.4.0",
+    "react-bootstrap": "^1.0.0-beta.16",
+    "react-bootstrap-datetimepicker": "0.0.22",
+    "react-datepicker": "^2.11.0",
+    "react-datetime": "^2.16.3",
+    "react-datetime-picker": "^2.9.0",
+    "react-router-dom": "^5.1.2",
+    "react-widgets": "^4.4.11",
+    "sweetalert-react": "^0.4.11",
+    "truffle-assertions": "^0.9.2",
+    "truffle-flattener": "^1.4.2"
+  },
+  "devDependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0"
+  }
+}

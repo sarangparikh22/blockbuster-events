@@ -1,0 +1,125 @@
+.tcardWrap {
+  /* width: 27em; */
+  /* margin: 3em auto; */
+  color: #fff;
+  font-family: sans-serif;
+}
+.tcard {
+  background: linear-gradient(to bottom, #e84c3d 0%, #e84c3d 26%, #ecedef 26%, #ecedef 100%);
+  height: 17em;
+  float: left;
+  position: relative;
+  padding: 1em;
+  margin-top: 10px;
+}
+.tcardLeft {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  width: 25em;
+}
+.tcardRight {
+  width: 7em;
+  border-left: 0.18em dashed #fff;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  left: -10px;
+}
+.tcardRight:before, .cardRight:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 0.9em;
+  height: 0.9em;
+  background: #fff;
+  border-radius: 50%;
+  left: -0.5em;
+}
+.tcardRight:before {
+  top: -0.4em;
+}
+.tcardRight:after {
+  bottom: -0.4em;
+}
+h1 {
+  font-size: 1.1em;
+  margin-top: 0;
+  margin-bottom: 2.5em;
+}
+h1 span {
+  font-weight: normal;
+}
+.ttitle, .tname, .tseat, .ttime {
+  text-transform: uppercase;
+  font-weight: normal;
+}
+.ttitle h2, .tname h2, .tseat h2, .ttime h2 {
+  font-size: 0.9em;
+  color: #525252;
+  margin: 20px 0px 0px 0px;
+}
+.ttitle span, .tname span, .tseat span, .ttime span {
+  font-size: 0.7em;
+  color: #a2aeae;
+}
+.ttitle {
+  margin: 1em 0 0 0;
+}
+.tname, .tseat {
+  margin: 0.7em 0 0 0;
+}
+.ttime {
+  margin: 0.7em 0 0 1em;
+}
+.tseat, .ttime {
+  float: left;
+}
+.teye {
+  position: relative;
+  width: 2em;
+  height: 1.5em;
+  background: #fff;
+  margin: 0 auto;
+  border-radius: 1em/0.6em;
+  z-index: 1;
+}
+.teye:before, .eye:after {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 50%;
+}
+.teye:before {
+  width: 1em;
+  height: 1em;
+  background: #e84c3d;
+  z-index: 2;
+  left: 8px;
+  top: 4px;
+}
+.teye:after {
+  width: 0.5em;
+  height: 0.5em;
+  background: #fff;
+  z-index: 3;
+  left: 12px;
+  top: 8px;
+}
+.tnumber {
+  text-align: center;
+  text-transform: uppercase;
+}
+.tnumber h3 {
+  color: #e84c3d;
+  margin: 1.7em 0 0 0;
+  font-size: 2.5em;
+}
+.tnumber span {
+  display: block;
+  color: #a2aeae;
+}
+.tbarcode {
+  height: 2em;
+  width: 0;
+  margin: 1.2em 0 0 0.8em;
+  box-shadow: 1px 0 0 1px #343434, 5px 0 0 1px #343434, 10px 0 0 1px #343434, 11px 0 0 1px #343434, 15px 0 0 1px #343434, 18px 0 0 1px #343434, 22px 0 0 1px #343434, 23px 0 0 1px #343434, 26px 0 0 1px #343434, 30px 0 0 1px #343434, 35px 0 0 1px #343434, 37px 0 0 1px #343434, 41px 0 0 1px #343434, 44px 0 0 1px #343434, 47px 0 0 1px #343434, 51px 0 0 1px #343434, 56px 0 0 1px #343434, 59px 0 0 1px #343434, 64px 0 0 1px #343434, 68px 0 0 1px #343434, 72px 0 0 1px #343434, 74px 0 0 1px #343434, 77px 0 0 1px #343434, 81px 0 0 1px #343434;
+}
