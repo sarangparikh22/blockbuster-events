@@ -1,4 +1,4 @@
-# Design Patter Decisions
+# Design Pattern Decisions
 The development strategy followed was Test Driven Development. Hence, you can observe so many tests in the test files.
 ## Modifiers and Requires (Fail Early Fail Loud)
 Each modifier is carefully created and tested to stop invalid authentication to a function or storage. The owner, hall and event owner have their respective functions and no one can execute each other.
