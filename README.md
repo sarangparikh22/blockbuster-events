@@ -1,5 +1,7 @@
 # Blockbuster.Events 
 
+Video: https://vimeo.com/388820946 
+
 ## Description
 Blockbuster.Events is a decentralized Event and Movie Booking platform created on the Blockchain. The main goal is to democratized the Booking industry and increase revenue for the creators and reduce prices for the consumers. Blockbuster.Event allows anyone to host Event for Free and Movies can be hosted by the Theter Halls approved by the Blockbuster.Events team. There is no additional or hidden charge taken by Blockbuster.Events team. This would help stop the monopoly in the Event Management industry.
 
