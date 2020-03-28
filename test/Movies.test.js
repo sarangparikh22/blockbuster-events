@@ -315,4 +315,23 @@ contract('Movies' , (accounts) => {
         })
     })
 
+    describe('Meta Transaction Movie Booking', async () => {
+        it('should buy ticket successfully without having to pay gas or amount', async() => {
+            const movieDetails = await contract.hallMovieCollectionMapping(accounts[1], 3)
+            const sigAddr = await contract.metaBuyTicket(
+                "0x735bf28595b26b059a73270f85bffc6a0950bc2d6c17d8fdf00bbf7377f032ee67bf14d90df5cfd907f8d27f19209eb26785113d105be028a560fb5817604dd71b",
+                1,
+                accounts[1],
+                3,
+                1,
+                {from: accounts[1], value: 10}
+            )
+        })
+
+        it('should verify the purchase', async() => {
+            const numTickets = await contract.verifyViewer(accounts[1], 3, {from: accounts[5]})
+            assert.equal(numTickets, 1);
+        })
+    })
+
 })

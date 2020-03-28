@@ -8,8 +8,9 @@ pragma solidity ^0.5.0;
 
 import "./SafeMath.sol";
 import "./Pausable.sol";
+import "./Util.sol";
 
-contract MoviesBlockbusterEvents is Pausable{
+contract MoviesBlockbusterEvents is Pausable, Util{
 
     // State Variables
     using SafeMath for uint;
@@ -167,13 +168,32 @@ contract MoviesBlockbusterEvents is Pausable{
     function buyTicket(address _hall, uint _movieID, uint _tickets) public payable whenNotPaused isActive(_hall,_movieID) {
         Movie storage m = hallMovieCollectionMapping[_hall][_movieID];
         require(_tickets <= m.seatsLeft);
-        require(_tickets * m.price <= msg.value);
+        require(_tickets.mul(m.price) <= msg.value);
         totalRevenue[_hall] = totalRevenue[_hall].add(_tickets.mul(m.price));
         m.seatsLeft = m.seatsLeft.sub(_tickets);
         m.viewers[msg.sender] = m.viewers[msg.sender].add(_tickets);
         emit BuyTicket(msg.sender, _hall, _movieID, _tickets);
     }
     
+    // Meta - Transaction Start
+    function metaBuyTicket(bytes memory _sig, uint _nonce, address _hall, uint _movieID, uint _tickets) public payable whenNotPaused isActive(_hall,_movieID) {
+        string memory conStr = strConcat(uintToString(_nonce), toString(_hall), uintToString(_movieID), uintToString(_tickets));
+        bytes32 hashFromData = hash(conStr);
+        address signer = recover(hashFromData, _sig);
+        
+        Movie storage m = hallMovieCollectionMapping[_hall][_movieID];
+        require(_tickets <= m.seatsLeft);
+        require(_tickets.mul(m.price) <= msg.value);
+        totalRevenue[_hall] = totalRevenue[_hall].add(_tickets.mul(m.price));
+        m.seatsLeft = m.seatsLeft.sub(_tickets);
+        m.viewers[signer] = m.viewers[signer].add(_tickets);
+        emit BuyTicket(signer, _hall, _movieID, _tickets);
+    }
+
+    // Meta - Transaction End
+
+
+
     /// @notice User Verify their Booking
     /// @dev It can be only called by any user.
     /// @param _hall Address of the Movie Hall
@@ -200,4 +220,7 @@ contract MoviesBlockbusterEvents is Pausable{
         m.seatsLeft = m.seatsLeft.add(tickets);
     }
     
+    // Ops
+    
+
 }
