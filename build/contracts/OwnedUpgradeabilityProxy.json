@@ -6005,10 +6005,92 @@
       "links": {},
       "address": "0x30CD02A399422cE9274187279d80257aFc2f0F45",
       "transactionHash": "0xdd63a4b7b44e91dc30a1cda0777a1fdf5ee03df80edad6a60ac1d6e866e00537"
+    },
+    "1585469819336": {
+      "events": {
+        "0x5a3e66efaa1e445ebd894728a69d6959842ea1e97bd79b892797106e270efcd9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "ProxyOwnershipTransferred",
+          "type": "event",
+          "signature": "0x5a3e66efaa1e445ebd894728a69d6959842ea1e97bd79b892797106e270efcd9"
+        },
+        "0xbc7cd75a20ee27fd9adebab32041f755214dbc6bffa90cc0225b39da2e5c2d3b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "implementation",
+              "type": "address"
+            }
+          ],
+          "name": "Upgraded",
+          "type": "event",
+          "signature": "0xbc7cd75a20ee27fd9adebab32041f755214dbc6bffa90cc0225b39da2e5c2d3b"
+        }
+      },
+      "links": {},
+      "address": "0x254dffcd3277C0b1660F6d42EFbB754edaBAbC2B",
+      "transactionHash": "0x0c63764f3486fb4a514c92cbf1db7f0895fe3cfdb87c2ab91323ca2748b6f52b"
+    },
+    "1585475320582": {
+      "events": {
+        "0x5a3e66efaa1e445ebd894728a69d6959842ea1e97bd79b892797106e270efcd9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "ProxyOwnershipTransferred",
+          "type": "event",
+          "signature": "0x5a3e66efaa1e445ebd894728a69d6959842ea1e97bd79b892797106e270efcd9"
+        },
+        "0xbc7cd75a20ee27fd9adebab32041f755214dbc6bffa90cc0225b39da2e5c2d3b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "implementation",
+              "type": "address"
+            }
+          ],
+          "name": "Upgraded",
+          "type": "event",
+          "signature": "0xbc7cd75a20ee27fd9adebab32041f755214dbc6bffa90cc0225b39da2e5c2d3b"
+        }
+      },
+      "links": {},
+      "address": "0x254dffcd3277C0b1660F6d42EFbB754edaBAbC2B",
+      "transactionHash": "0x0c63764f3486fb4a514c92cbf1db7f0895fe3cfdb87c2ab91323ca2748b6f52b"
     }
   },
   "schemaVersion": "3.0.20",
-  "updatedAt": "2020-03-28T10:09:03.119Z",
+  "updatedAt": "2020-03-29T09:49:08.238Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "This contract combines an upgradeability proxy with basic authorization control functionalities",
