@@ -30,6 +30,9 @@ import AddEvents from './components/AddEvents'
 import Footer from './components/Footer'
 import Events from './components/Events'
 import MyEvents from './components/MyEvents'
+import MetaMovies from './components/MetaMovies'
+import MetaMovie from './components/MetaMovie'
+
 
 let accountPopover; 
 
@@ -195,7 +198,12 @@ class App extends Component {
              accounts = {this.state.accounts} 
              EventsBlockbusterEventsContract = {this.state.EventsBlockbusterEventsContract}
             />} />
-            
+            <Route path="/meta" component =  {() => <MetaMovies 
+              mov={this.state.movies}
+              web3 = {this.state.web3} 
+              accounts = {this.state.accounts} 
+              MoviesBlockbusterEventsContract = {this.state.MoviesBlockbusterEventsContract}
+            />} />
           </Switch>
         </Router>        
       </div>

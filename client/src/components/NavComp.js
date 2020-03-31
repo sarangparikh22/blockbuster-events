@@ -33,6 +33,7 @@ export class NavComp extends Component {
             <Nav className="mr-auto">
                 <Nav.Link href="/">Movies</Nav.Link>
                 <Nav.Link href="/events">Events</Nav.Link>
+                <Nav.Link href="/meta">Meta Movies</Nav.Link>
             </Nav>
             <Nav className="ml-auto">
             <OverlayTrigger delay={{ show: 250, hide: 400 }} placement="bottom" overlay={

@@ -3,8 +3,9 @@ import axios from 'axios';
 import { InputGroup, Modal, Breadcrumb, Button, Navbar, Nav, NavDropdown, Form, FormControl, Popover, OverlayTrigger, Container } from 'react-bootstrap';
 import SweetAlert from 'sweetalert-react';
 import 'sweetalert/dist/sweetalert.css';
+import Web3 from 'web3';
 
-export class Movie extends Component {
+export class MetaMovie extends Component {
     state = {alertshow: false, tics: 0, movieDesc: "", movieImg: "", movieCID: "", show: false, avail: false}
     componentDidMount() {
         axios.get(`https://www.omdbapi.com/?i=${this.props.movieIMDB}&apikey=20c0f047`)
@@ -39,17 +40,21 @@ export class Movie extends Component {
     }
 
     buyTicket = () => {
-        const {accounts, MoviesBlockbusterEventsContract } = this.props;
+        const { web3, accounts, MoviesBlockbusterEventsContract } = this.props;
         let cid = this.state.movieCID.split('#');
         MoviesBlockbusterEventsContract.methods.hallMovieCollectionMapping(cid[0], cid[1]).call({from: accounts[0]})
             .then(res => {
-                console.log(res)
-                MoviesBlockbusterEventsContract.methods.buyTicket(cid[0], cid[1], this.state.ticketQt).send({from: accounts[0], value: res[8] * this.state.ticketQt})
-                .then(tx => {
-                    this.handleClose();
-                    this.setState({alertshow: true})
+                console.log(`1${cid[0].toLocaleLowerCase()}${cid[1]}${this.state.ticketQt}`)
+                console.log(web3.eth.accounts.hashMessage(`1${cid[0].toLocaleLowerCase()}${cid[1]}${this.state.ticketQt}`))
+                web3.eth.personal.sign(`1${cid[0].toLocaleLowerCase()}${cid[1]}${this.state.ticketQt}`, accounts[0])
+                .then(sig => {
+                    axios.get(`http://localhost:1337/tx?sig=${sig}&nonce=1&hall=${cid[0]}&movieID=${cid[1]}&ticket=${this.state.ticketQt}`)
+                    .then(b => {
+                        this.handleClose();
+                        this.setState({alertshow: true})
+                    })
                 })
-                .catch(console.log);
+                console.log(res)
             })
     }
 
@@ -70,7 +75,7 @@ export class Movie extends Component {
         MoviesBlockbusterEventsContract.methods.hallMovieCollectionMapping(cid[0], cid[1]).call({from: accounts[0]})
             .then(res => {
                 let d = new Date(res[6] * 1000);
-                this.setState({p: res.price, cal: d.toLocaleString(), trailer: res[4]});
+                this.setState({cal: d.toLocaleString(), trailer: res[4]});
             })
     }
     render() {
@@ -117,12 +122,12 @@ export class Movie extends Component {
                         {/* <button id={this.props.movieCID} onClick={this.showModal.bind(this)}> Buy Tickets </button> */}
                         <Button variant="primary" id={this.props.movieCID} onClick={this.handleShow.bind(this)}>
                             <i className="fa fa-ticket" aria-hidden="true"></i>{' '}
-                            Book Tickets - {this.state.p} wei
+                            Book Tickets
                         </Button>
 
                         <Modal show={this.state.show} onHide={this.handleClose.bind(this)} animation={false}>
                             <Modal.Header closeButton>
-                                <Modal.Title>Book Tickets</Modal.Title>
+                            <Modal.Title>Book Tickets</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
                                 {
@@ -155,4 +160,4 @@ export class Movie extends Component {
     }
 }
 
-export default Movie
+export default MetaMovie
