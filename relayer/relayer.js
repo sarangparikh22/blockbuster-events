@@ -4,6 +4,12 @@ const contractJSON = require('./../build/contracts/MoviesBlockbusterEvents.json'
 
 const app = express()
 
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Authorization, Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 let web3 = new Web3('http://localhost:8545');
 let chainID;
 let contractAddress;
@@ -22,6 +28,9 @@ web3.eth.net.getId()
     abi = contractJSON.abi;
     contractAddress = contractJSON.networks[chainID].address;
     contractInstance = new web3.eth.Contract(abi, contractAddress);
+    contractInstance.methods.owner().call({from: accounts[0]})
+    .then(r => console.log(`Contract Connected -> Owner: ${r}`));
+
 })
 
 
@@ -30,29 +39,30 @@ app.get('/', (req,res) => {
 })
 
 app.get('/tx', (req,res) => {
-    console.log(`Received Transaction`);
+
+    console.log(`/Received Transaction`);
     const sig = req.param('sig');
     const nonce = req.param('nonce');
     const hall = req.param('hall');
     const movieID = req.param('movieID');
     const ticket = req.param('ticket');
-    console.log(sig);
-    console.log(nonce);
-    console.log(hall);
-    console.log(movieID);
-    console.log(ticket);
 
-    contractInstance.methods.metaBuyTicket(
-        sig, 
-        nonce, 
-        hall, 
-        movieID, 
-        ticket
-    ).send({from: accounts[4], value: 99, gas: 100000})
-    .then(tx => res.send(tx.transactionHash))
-    .catch(console.log)
-    
-
+    console.log(`/Received Signature: ${sig}`);
+    contractInstance.methods.hallMovieCollectionMapping(hall, movieID).call({from: accounts[0]})
+    .then(mov => {
+        contractInstance.methods.metaBuyTicket(
+            sig, 
+            nonce, 
+            hall, 
+            movieID, 
+            ticket
+        ).send({from: accounts[4], value: mov.price * ticket, gas: 100000})
+        .then(tx => {
+            console.log(`/Transaction Success: ${tx.transactionHash}`);
+            res.send(tx.transactionHash)
+        })
+        .catch(console.log)
+    });
 })
 
 app.listen(1337, () => {
