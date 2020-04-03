@@ -25920,10 +25920,187 @@
       "links": {},
       "address": "0xD833215cBcc3f914bD1C9ece3EE7BF8B14f841bb",
       "transactionHash": "0x995dd8de1e22bd03ffbb458a189f045be3b5df3e3da8b3f2f3471da34742349a"
+    },
+    "1585656191171": {
+      "events": {
+        "0xddfcdc668b68089e13dd0a26eaf22bf6780e4f4bac4d98edb40e8e3f50ef5ee7": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "movieID",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "hall",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "movieName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "movieIMDB",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "enum MoviesBlockbusterEvents.Format",
+              "name": "format",
+              "type": "uint8"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "time",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "seatsLeft",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "active",
+              "type": "bool"
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "cancellation",
+              "type": "bool"
+            }
+          ],
+          "name": "AddMovie",
+          "type": "event",
+          "signature": "0xddfcdc668b68089e13dd0a26eaf22bf6780e4f4bac4d98edb40e8e3f50ef5ee7"
+        },
+        "0x14e9f7e3598bfdb478635015097b3c13de8bb57757b267bcb75e5ea3e3bb60fa": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "buyer",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "hall",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "movieID",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "tickets",
+              "type": "uint256"
+            }
+          ],
+          "name": "BuyTicket",
+          "type": "event",
+          "signature": "0x14e9f7e3598bfdb478635015097b3c13de8bb57757b267bcb75e5ea3e3bb60fa"
+        },
+        "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "Paused",
+          "type": "event",
+          "signature": "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258"
+        },
+        "0x6719d08c1888103bea251a4ed56406bd0c3e69723c8a1686e017e7bbe159b6f8": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "PauserAdded",
+          "type": "event",
+          "signature": "0x6719d08c1888103bea251a4ed56406bd0c3e69723c8a1686e017e7bbe159b6f8"
+        },
+        "0xcd265ebaf09df2871cc7bd4133404a235ba12eff2041bb89d9c714a2621c7c7e": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "PauserRemoved",
+          "type": "event",
+          "signature": "0xcd265ebaf09df2871cc7bd4133404a235ba12eff2041bb89d9c714a2621c7c7e"
+        },
+        "0xab1e36a08176cc33d01e126bdd6936182fcd21fb3c638e5a01ff151978dc829d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "hall",
+              "type": "address"
+            }
+          ],
+          "name": "RegisterHall",
+          "type": "event",
+          "signature": "0xab1e36a08176cc33d01e126bdd6936182fcd21fb3c638e5a01ff151978dc829d"
+        },
+        "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "Unpaused",
+          "type": "event",
+          "signature": "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa"
+        }
+      },
+      "links": {},
+      "address": "0x26b4AFb60d6C903165150C6F0AA14F8016bE4aec",
+      "transactionHash": "0x65f34875cc1ae538554d60360cfa71ca0a8e3b4fc8b32d4c0e3c08a08e893672"
     }
   },
   "schemaVersion": "3.0.20",
-  "updatedAt": "2020-03-31T06:06:29.614Z",
+  "updatedAt": "2020-03-31T12:21:49.529Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {

@@ -56,7 +56,7 @@ app.get('/tx', (req,res) => {
             hall, 
             movieID, 
             ticket
-        ).send({from: accounts[4], value: mov.price * ticket, gas: 100000})
+        ).send({from: accounts[4], value: mov.price * ticket, gas: 500000})
         .then(tx => {
             console.log(`/Transaction Success: ${tx.transactionHash}`);
             res.send(tx.transactionHash)
