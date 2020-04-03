@@ -22110,10 +22110,49 @@
       "links": {},
       "address": "0x630589690929E9cdEFDeF0734717a9eF3Ec7Fcfe",
       "transactionHash": "0xefa37f055c96f72eb2beca0c1c33b4424c06ff3056d282c7c33ba8b0bb640b10"
+    },
+    "1585895782300": {
+      "events": {
+        "0x23af0023dde8f6ca29508a961d1355c4b8a9c8398d344fe55de3ce9331cb8d63": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "eventId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "eventName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "buyer",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "location",
+              "type": "string"
+            }
+          ],
+          "name": "Registered",
+          "type": "event",
+          "signature": "0x23af0023dde8f6ca29508a961d1355c4b8a9c8398d344fe55de3ce9331cb8d63"
+        }
+      },
+      "links": {},
+      "address": "0x9561C133DD8580860B6b7E504bC5Aa500f0f06a7",
+      "transactionHash": "0x9ee5e5fc6733d3648dd1d4976955ff94b5247843180e24e98811882dcda04067"
     }
   },
   "schemaVersion": "3.0.20",
-  "updatedAt": "2020-03-31T12:21:49.573Z",
+  "updatedAt": "2020-04-03T06:39:36.228Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {

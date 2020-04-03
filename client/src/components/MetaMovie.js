@@ -4,10 +4,18 @@ import { InputGroup, Modal, Breadcrumb, Button, Navbar, Nav, NavDropdown, Form, 
 import SweetAlert from 'sweetalert-react';
 import 'sweetalert/dist/sweetalert.css';
 import Web3 from 'web3';
+const config = require('../config');
 
 export class MetaMovie extends Component {
-    state = {alertshow: false, tics: 0, movieDesc: "", movieImg: "", movieCID: "", show: false, avail: false}
+    state = {pid: "", alertshow: false, tics: 0, movieDesc: "", movieImg: "", movieCID: "", show: false, avail: false}
     componentDidMount() {
+        const script = document.createElement("script");
+
+        script.src = "https://checkout.razorpay.com/v1/checkout.js";
+        script.async = true;
+    
+        document.body.appendChild(script);
+    
         axios.get(`https://www.omdbapi.com/?i=${this.props.movieIMDB}&apikey=20c0f047`)
             .then(res => {
                 this.setState({
@@ -28,9 +36,9 @@ export class MetaMovie extends Component {
         MoviesBlockbusterEventsContract.methods.hallMovieCollectionMapping(cid[0], cid[1]).call({from: accounts[0]})
         .then(res => {
             if(res[7] > 0){
-                this.setState({show: true, movieCID: cidP, avail: true,  tics: res[7]});
+                this.setState({price: res.price, show: true, movieCID: cidP, avail: true,  tics: res[7]});
             }else{
-                this.setState({show: true, movieCID: cidP, avail: false});
+                this.setState({price: res.price, show: true, movieCID: cidP, avail: false});
             }
         })
     }
@@ -38,7 +46,56 @@ export class MetaMovie extends Component {
     handleClose = () => {
         this.setState({show: false, movieCID: ""})
     }
+    payment = () => {
 
+        const { payment_amount } = this.state;
+        const self = this;
+        let paymentAmt =  this.state.price*this.state.ticketQt*100;
+        const options = {
+        key: config.key_id,
+        amount: this.state.price*this.state.ticketQt*100,
+        name: 'Payments',
+        description: 'Blockbuster.Events',
+
+        handler(response) {
+            const paymentId = response.razorpay_payment_id;
+            const url = 'http://localhost:1337/api/v1/rzp_capture/'+paymentId+'/'+paymentAmt;
+            // Using my server endpoints to capture the payment
+            fetch(url, {
+            method: 'get',
+            headers: {
+                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+            }
+            })
+            .then(resp =>  resp.json())
+            .then(function (data) {
+            console.log('Request succeeded with JSON response', data);
+            self.setState({
+                pid: response.razorpay_payment_id
+            });
+                self.buyTicket();
+            })
+            .catch(function (error) {
+            console.log('Request failed', error);
+            });
+        },
+
+        prefill: {
+            name: 'Sarang Parikh',
+            email: 'sarangparikh22@gmail.com',
+        },
+        notes: {
+            address: 'Varanasi, India',
+        },
+        theme: {
+            color: '#9D50BB',
+        },
+        };
+        const rzp1 = new window.Razorpay(options);
+
+        rzp1.open();
+
+    }
     buyTicket = () => {
         const { web3, accounts, MoviesBlockbusterEventsContract } = this.props;
         let cid = this.state.movieCID.split('#');
@@ -48,7 +105,7 @@ export class MetaMovie extends Component {
                 console.log(web3.eth.accounts.hashMessage(`1${cid[0].toLocaleLowerCase()}${cid[1]}${this.state.ticketQt}`))
                 web3.eth.personal.sign(`1${cid[0].toLocaleLowerCase()}${cid[1]}${this.state.ticketQt}`, accounts[0])
                 .then(sig => {
-                    axios.get(`http://localhost:1337/tx?sig=${sig}&nonce=1&hall=${cid[0]}&movieID=${cid[1]}&ticket=${this.state.ticketQt}`)
+                    axios.get(`http://localhost:1337/tx?pid=${this.state.pid}&sig=${sig}&nonce=1&hall=${cid[0]}&movieID=${cid[1]}&ticket=${this.state.ticketQt}`)
                     .then(b => {
                         this.handleClose();
                         this.setState({alertshow: true})
@@ -147,7 +204,7 @@ export class MetaMovie extends Component {
                             <Button variant="secondary" onClick={this.handleClose.bind(this)}>
                                 Close
                             </Button>
-                            <Button variant="primary" onClick={this.buyTicket.bind(this)}>
+                            <Button variant="primary" onClick={this.payment.bind(this)}>
                                 Book Tickets
                             </Button>
                             </Modal.Footer>
